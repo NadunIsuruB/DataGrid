@@ -46,7 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Interfaces\IFileReaderService.cs" />
+    <Compile Include="Models\Common\DataTableEntity.cs" />
+    <Compile Include="Models\FilteredDataTable.cs" />
+    <Compile Include="Models\Interfaces\IInputFileReaderService.cs" />
     <Compile Include="Services\CSVReaderService.cs" />
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>

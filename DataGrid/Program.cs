@@ -17,7 +17,7 @@ namespace DataGrid
         [STAThread]
         static void Main()
         {
-            IInputFileReaderService CSVRederService = (IInputFileReaderService)new CSVReaderService();
+            IInputFileReaderService CSVRederService = new CSVReaderService();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

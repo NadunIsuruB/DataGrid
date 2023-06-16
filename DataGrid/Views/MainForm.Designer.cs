@@ -82,7 +82,7 @@
             this.importToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 26);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // importToolStripMenuItem
@@ -112,6 +112,14 @@
             // operatorsDropDown
             // 
             this.operatorsDropDown.FormattingEnabled = true;
+            this.operatorsDropDown.Items.AddRange(new object[] {
+            "Operators",
+            "=",
+            ">",
+            "=>",
+            "<",
+            "=<",
+            "!="});
             this.operatorsDropDown.Location = new System.Drawing.Point(133, 21);
             this.operatorsDropDown.Name = "operatorsDropDown";
             this.operatorsDropDown.Size = new System.Drawing.Size(122, 24);
