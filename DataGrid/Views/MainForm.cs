@@ -43,18 +43,35 @@ namespace DataGrid
             System.Windows.Forms.Application.Exit();
         }
 
+        //Criteria Dropdown Click
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (criteriaDropDown.SelectedIndex == 0) return;
             operatorsDropDown.Enabled = true;
         }
 
+        //Operator DropDown Click
+        private void operatorsDropDown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (operatorsDropDown.SelectedIndex == 0) return;
+            filterTextBox.Enabled = true;
+        }
+
+        //Filter Text Box Click
+        private void filterTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (filterTextBox.Text == "" || filteredDataTable.FilterString == "") return;
+            andOrDropDow.Enabled = true;
+        }
+
+
+        //Add Filter Button Click
         private void button1_Click_1(object sender, EventArgs e)
         {
             if (criteriaDropDown.SelectedIndex == 0) { MessageBox.Show("Criteria Must be Selected!"); return; }
             if (operatorsDropDown.SelectedIndex == 0) { MessageBox.Show("Operator Must be Selected"); return; }
             if (filterTextBox.Text == "") { MessageBox.Show("Value Must be Added"); return; }
-            if (andOrDropDow.SelectedIndex == -1 && (filteredDataTable.FilterString != null || filterEditor.Text != "")) { MessageBox.Show("Logical Operator Must be Selected"); return; }
+            if (andOrDropDow.SelectedIndex == -1 && (filteredDataTable.FilterString != "" || filterEditor.Text != "")) { MessageBox.Show("Logical Operator Must be Selected"); return; }
 
             //Filter filter = new Filter(criteriaDropDown.Text, operatorsDropDown.Text, filterTextBox.Text, andOrDropDow.SelectedIndex);
             filterService.Column = criteriaDropDown.Text;
@@ -64,40 +81,31 @@ namespace DataGrid
 
             filterEditor.Text += filterService.FilterString();
             filteredDataTable.FilterString = filterEditor.Text;
-            if (filteredDataTable.FilterString == null) return;
+            if (filteredDataTable.FilterString == "") return;
             andOrDropDow.Enabled = true;
 
         }
 
+        //Filter Button Click Click
         private void button1_Click_2(object sender, EventArgs e)
         {
             dataGridView.DataSource = filteredDataTable.ApplyFilters(dataGridView, filterEditor.Text);
         }
 
-        private void operatorsDropDown_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (operatorsDropDown.SelectedIndex == 0) return;
-            filterTextBox.Enabled = true;
-        }
-
-        private void filterTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (filterTextBox.Text == "" || filteredDataTable.FilterString == null) return;
-            andOrDropDow.Enabled = true;
-        }
-
+        //Reset Filter Button Click
         private void button1_Click(object sender, EventArgs e)
         {
             filterEditor.Text = "";
-            filteredDataTable.FilterString = null;
-            dataGridView.DataSource = filteredDataTable.ApplyFilters(dataGridView, null);
+            filteredDataTable.FilterString = "";
+            dataGridView.DataSource = filteredDataTable.ApplyFilters(dataGridView, "");
         }
 
+        //Filter Editor Text Field Click
         private void filterEditor_TextChanged(object sender, EventArgs e)
         {
             if (filterEditor.Text == "")
             {
-                filteredDataTable.FilterString = null;
+                filteredDataTable.FilterString = "";
                 andOrDropDow.Enabled = false;
             }
             else

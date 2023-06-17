@@ -192,6 +192,7 @@
             this.andOrDropDow.Size = new System.Drawing.Size(101, 24);
             this.andOrDropDow.TabIndex = 6;
             this.andOrDropDow.Text = "AND/OR";
+            this.andOrDropDow.SelectedIndexChanged += new System.EventHandler(this.andOrDropDow_SelectedIndexChanged);
             // 
             // filterButton
             // 

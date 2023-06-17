@@ -12,7 +12,7 @@ namespace DataGrid.Models
     public class FilteredDataTable : DataTableEntity
     {
         //public List<Filter> Filters = new List<Filter>();
-        public string FilterString { get; set; }
+        public string FilterString { get; set; } = "";
         public FilteredDataTable(IInputFileReaderService inputFileReaderService): base(inputFileReaderService)
         {
 
@@ -26,6 +26,7 @@ namespace DataGrid.Models
                 bs.DataSource = dataGridView.DataSource;
 
                 bs.Filter = filterString;
+                
                 FilterString = filterString;
 
                 return bs;
