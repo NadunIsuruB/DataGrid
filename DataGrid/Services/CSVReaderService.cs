@@ -13,7 +13,7 @@ namespace DataGrid.Services
 {
     public class CSVReaderService : IInputFileReaderService
     {
-        public string FilePath { get; }
+        public string FilePath { get; protected set; }
 
         public DataTable DataTable { get; set; }
 
@@ -26,7 +26,7 @@ namespace DataGrid.Services
             if (opf.ShowDialog() != DialogResult.OK) return null;
 
             string[] lines = System.IO.File.ReadAllLines(opf.FileName);
-            string path = opf.FileName;
+            FilePath = opf.FileName;
             string[][] data = new string[lines.Length][];
             for (int i = 0; i < lines.Length; i++)
             {
@@ -36,16 +36,13 @@ namespace DataGrid.Services
                     foreach (string col in data[i])
                     {
                         bool isInteger = true;
-                        int checks = 5;
-                        foreach (string value in File.ReadLines(path).Skip(1))
+                        foreach (string value in File.ReadLines(FilePath).Skip(1).Take(6))
                         {
-                            checks--;
                             if (!int.TryParse(value.Split(',')[data[i].ToList().IndexOf(col)], out _))
                             {
                                 isInteger = false;
                                 break;
                             }
-                            if (checks < 0) break;
                         }
                         if (isInteger)
                         {
