@@ -97,7 +97,7 @@ namespace DataGrid
         {
             filterEditor.Text = "";
             filteredDataTable.FilterString = "";
-            operatorsDropDown.Text = "ADD/OR";
+            andOrDropDow.Text = "ADD/OR";
             dataGridView.DataSource = filteredDataTable.ApplyFilters(dataGridView, "");
         }
 
@@ -113,6 +113,12 @@ namespace DataGrid
             {
                 andOrDropDow.Enabled = true;
             }  
+        }
+
+        //search Button
+        private void seachButtoon_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
