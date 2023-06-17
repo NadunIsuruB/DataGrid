@@ -90,7 +90,7 @@ namespace DataGrid
         {
             filterEditor.Text = "";
             filteredDataTable.FilterString = null;
-            dataGridView.DataSource = filteredDataTable.ApplyFilters(dataGridView, filterEditor.Text);
+            dataGridView.DataSource = filteredDataTable.ApplyFilters(dataGridView, null);
         }
 
         private void filterEditor_TextChanged(object sender, EventArgs e)
