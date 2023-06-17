@@ -38,9 +38,10 @@
             this.filterTextBox = new System.Windows.Forms.TextBox();
             this.addNewFilterButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.filterButton = new System.Windows.Forms.Button();
-            this.andOrDropDow = new System.Windows.Forms.ComboBox();
             this.filterEditor = new System.Windows.Forms.RichTextBox();
+            this.andOrDropDow = new System.Windows.Forms.ComboBox();
+            this.filterButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -66,7 +67,6 @@
             this.dataGridView.RowTemplate.Height = 24;
             this.dataGridView.Size = new System.Drawing.Size(1049, 347);
             this.dataGridView.TabIndex = 0;
-            this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // menuStrip1
             // 
@@ -79,7 +79,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(1073, 36);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // fileToolStripMenuItem
             // 
@@ -93,14 +92,14 @@
             // importToolStripMenuItem
             // 
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(224, 32);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(158, 32);
             this.importToolStripMenuItem.Text = "Import";
             this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 32);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(158, 32);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -168,19 +167,14 @@
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filter Criterias";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // filterButton
+            // filterEditor
             // 
-            this.filterButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.filterButton.Location = new System.Drawing.Point(834, 52);
-            this.filterButton.Name = "filterButton";
-            this.filterButton.Size = new System.Drawing.Size(227, 68);
-            this.filterButton.TabIndex = 7;
-            this.filterButton.TabStop = false;
-            this.filterButton.Text = "Filter";
-            this.filterButton.UseVisualStyleBackColor = true;
-            this.filterButton.Click += new System.EventHandler(this.button1_Click_2);
+            this.filterEditor.Location = new System.Drawing.Point(6, 51);
+            this.filterEditor.Name = "filterEditor";
+            this.filterEditor.Size = new System.Drawing.Size(617, 213);
+            this.filterEditor.TabIndex = 7;
+            this.filterEditor.Text = "";
             // 
             // andOrDropDow
             // 
@@ -198,13 +192,29 @@
             this.andOrDropDow.TabIndex = 6;
             this.andOrDropDow.Text = "AND/OR";
             // 
-            // filterEditor
+            // filterButton
             // 
-            this.filterEditor.Location = new System.Drawing.Point(6, 51);
-            this.filterEditor.Name = "filterEditor";
-            this.filterEditor.Size = new System.Drawing.Size(617, 213);
-            this.filterEditor.TabIndex = 7;
-            this.filterEditor.Text = "";
+            this.filterButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.filterButton.Location = new System.Drawing.Point(834, 52);
+            this.filterButton.Name = "filterButton";
+            this.filterButton.Size = new System.Drawing.Size(227, 68);
+            this.filterButton.TabIndex = 7;
+            this.filterButton.TabStop = false;
+            this.filterButton.Text = "Filter";
+            this.filterButton.UseVisualStyleBackColor = true;
+            this.filterButton.Click += new System.EventHandler(this.button1_Click_2);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(834, 126);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(227, 68);
+            this.button1.TabIndex = 8;
+            this.button1.TabStop = false;
+            this.button1.Text = "Reset Filters";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainForm
             // 
@@ -212,6 +222,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1073, 674);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.filterButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridView);
@@ -219,7 +230,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Data Grid - Nadun Isuru B";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -245,6 +255,7 @@
         private System.Windows.Forms.Button filterButton;
         private System.Windows.Forms.ComboBox andOrDropDow;
         private System.Windows.Forms.RichTextBox filterEditor;
+        private System.Windows.Forms.Button button1;
     }
 }
 

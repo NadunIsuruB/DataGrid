@@ -17,21 +17,6 @@ namespace DataGrid
             InitializeComponent();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
             filteredDataTable.ImportFile(); 
@@ -53,7 +38,7 @@ namespace DataGrid
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            System.Windows.Forms.Application.Exit();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -77,16 +62,6 @@ namespace DataGrid
 
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
         private void button1_Click_2(object sender, EventArgs e)
         {
             dataGridView.DataSource = filteredDataTable.ApplyFilters(dataGridView, filterEditor.Text);
@@ -102,6 +77,13 @@ namespace DataGrid
         {
             if (filterTextBox.Text == "" || filteredDataTable.Filters.Count==0) return;
             andOrDropDow.Enabled = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            filterEditor.Text = "";
+            filteredDataTable.Filters.Clear();
+            dataGridView.DataSource = filteredDataTable.ApplyFilters(dataGridView, filterEditor.Text);
         }
     }
 }
