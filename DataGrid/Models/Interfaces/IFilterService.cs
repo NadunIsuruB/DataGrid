@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,5 +15,6 @@ namespace DataGrid.Models.Interfaces
         int LogicalOperator { get; set; }
 
         string FilterString();
+        string SearchString(List<DataColumn> columns, string searchParam);
     }
 }

@@ -22,13 +22,13 @@ namespace DataGrid
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
             filteredDataTable.ImportFile(); 
-            dataGridView.DataSource = filteredDataTable.dataTable;
+            dataGridView.DataSource = filteredDataTable.DataTable;
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView.ReadOnly = true;
 
             List<string> headers = new List<string>() {"Criteria"};
-            if (filteredDataTable.headers == null) return;
-            filteredDataTable.headers.ForEach(col =>
+            if (filteredDataTable.Headers == null) return;
+            filteredDataTable.Headers.ForEach(col =>
             {
                 if (col.DataType == typeof(string)) return;
                 headers.Add(col.ColumnName);
@@ -86,10 +86,10 @@ namespace DataGrid
 
         }
 
-        //Filter Button Click Click
+        //Filter Button Click
         private void button1_Click_2(object sender, EventArgs e)
         {
-            dataGridView.DataSource = filteredDataTable.ApplyFilters(dataGridView, filterEditor.Text);
+            dataGridView.DataSource = filteredDataTable.ApplyFilters(filterEditor.Text);
         }
 
         //Reset Filter Button Click
@@ -97,8 +97,10 @@ namespace DataGrid
         {
             filterEditor.Text = "";
             filteredDataTable.FilterString = "";
+            searchTextBox.Text = "";
             andOrDropDow.Text = "ADD/OR";
-            dataGridView.DataSource = filteredDataTable.ApplyFilters(dataGridView, "");
+            dataGridView.DataSource = filteredDataTable.ApplyFilters("");
+            dataGridView.DataSource = filteredDataTable.ApplySearch("");
         }
 
         //Filter Editor Text Field Click
@@ -113,6 +115,13 @@ namespace DataGrid
             {
                 andOrDropDow.Enabled = true;
             }  
+        }
+
+        //search Button
+        private void seachButtoon_Click(object sender, EventArgs e)
+        {
+            string searchStrign = filterService.SearchString(filteredDataTable.Headers, searchTextBox.Text);
+            dataGridView.DataSource = filteredDataTable.ApplySearch(searchStrign);
         }
     }
 }

@@ -13,30 +13,65 @@ namespace DataGrid.Models
     {
         //public List<Filter> Filters = new List<Filter>();
         public string FilterString { get; set; } = "";
+        public string SearchString { get; set; } = "";
+        private BindingSource bindingSource = new BindingSource();
         public FilteredDataTable(IInputFileReaderService inputFileReaderService): base(inputFileReaderService)
         {
 
         }
 
-        public BindingSource ApplyFilters(DataGridView dataGridView, string filterString)
+        public BindingSource ApplyFilters(string filterString)
         {
-            BindingSource bs = new BindingSource();
+            
             try
             {
-                bs.DataSource = dataGridView.DataSource;
-
-                bs.Filter = filterString;
+                bindingSource.DataSource = DataTable;
+                bindingSource.Filter = "";
                 
                 FilterString = filterString;
-
-                return bs;
+                if(filterString == "") return bindingSource;
+                if(SearchString == "")
+                {
+                    bindingSource.Filter = FilterString;
+                }
+                else
+                {
+                    bindingSource.Filter = FilterString + " AND " + SearchString;
+                }
+                 
+                
             }catch(Exception ex)
             {
                 MessageBox.Show("Please Enter Correct Filter Criterias!");
-                return bs;
             }
-            
+            return bindingSource;
+
         }
 
+        public BindingSource ApplySearch(string searchString)
+        {
+            try
+            {
+                bindingSource.DataSource = DataTable;
+                bindingSource.Filter = "";
+
+                SearchString = searchString;
+
+                if (FilterString == "")
+                {
+                    bindingSource.Filter = SearchString;
+                }
+                else
+                {
+                    bindingSource.Filter = FilterString + " AND " + SearchString;
+                }
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Something Went Wrong With Searching!");
+            }
+            return bindingSource;
+        }
     }
 }
