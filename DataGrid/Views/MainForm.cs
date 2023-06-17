@@ -23,7 +23,7 @@ namespace DataGrid
 
         private void button1_Click(object sender, EventArgs e)
         {
-            dataGridView.DataSource= "Madun";
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -54,12 +54,23 @@ namespace DataGrid
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            //MessageBox.Show(filteredDataTable.headers[1]);
+            Filter filter = new Filter(criteriaDropDown.Text, operatorsDropDown.Text, filterTextBox.Text, andOrDropDow.Text);
+            filteredDataTable.Filters.Add(filter);
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            dataGridView.DataSource = filteredDataTable.ApplyFilters(dataGridView);
         }
     }
 }

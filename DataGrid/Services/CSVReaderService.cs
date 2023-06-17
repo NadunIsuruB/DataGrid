@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,15 +26,36 @@ namespace DataGrid.Services
             if (opf.ShowDialog() != DialogResult.OK) return null;
 
             string[] lines = System.IO.File.ReadAllLines(opf.FileName);
+            string path = opf.FileName;
             string[][] data = new string[lines.Length][];
             for (int i = 0; i < lines.Length; i++)
             {
                 data[i] = lines[i].Split(',');
                 if (i == 0)
                 {
-                    foreach (string s in data[i])
+                    foreach (string col in data[i])
                     {
-                        dataTable.Columns.Add(s);
+                        bool isInteger = true;
+                        int checks = 5;
+                        foreach (string value in File.ReadLines(path).Skip(1))
+                        {
+                            checks--;
+                            if (!int.TryParse(value.Split(',')[data[i].ToList().IndexOf(col)], out _))
+                            {
+                                isInteger = false;
+                                break;
+                            }
+                            if (checks < 0) break;
+                        }
+                        if (isInteger)
+                        {
+                            dataTable.Columns.Add(col, typeof(int));
+                        }
+                        else
+                        {
+                            dataTable.Columns.Add(col, typeof(string));
+                        }
+                        
                     }
                 }
                 else

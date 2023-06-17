@@ -38,6 +38,8 @@
             this.filterTextBox = new System.Windows.Forms.TextBox();
             this.addNewFilterButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.filterButton = new System.Windows.Forms.Button();
+            this.andOrDropDow = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -67,14 +69,16 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1073, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1073, 36);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // fileToolStripMenuItem
             // 
@@ -116,9 +120,9 @@
             "Operators",
             "=",
             ">",
-            "=>",
+            ">=",
             "<",
-            "=<",
+            "<=",
             "!="});
             this.operatorsDropDown.Location = new System.Drawing.Point(133, 21);
             this.operatorsDropDown.Name = "operatorsDropDown";
@@ -135,9 +139,9 @@
             // 
             // addNewFilterButton
             // 
-            this.addNewFilterButton.Location = new System.Drawing.Point(367, 21);
+            this.addNewFilterButton.Location = new System.Drawing.Point(441, 21);
             this.addNewFilterButton.Name = "addNewFilterButton";
-            this.addNewFilterButton.Size = new System.Drawing.Size(126, 23);
+            this.addNewFilterButton.Size = new System.Drawing.Size(126, 24);
             this.addNewFilterButton.TabIndex = 5;
             this.addNewFilterButton.Text = "Add Filter";
             this.addNewFilterButton.UseVisualStyleBackColor = true;
@@ -147,17 +151,46 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.andOrDropDow);
             this.groupBox1.Controls.Add(this.criteriaDropDown);
             this.groupBox1.Controls.Add(this.addNewFilterButton);
             this.groupBox1.Controls.Add(this.operatorsDropDown);
             this.groupBox1.Controls.Add(this.filterTextBox);
-            this.groupBox1.Location = new System.Drawing.Point(12, 31);
+            this.groupBox1.Location = new System.Drawing.Point(12, 39);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(573, 278);
+            this.groupBox1.Size = new System.Drawing.Size(573, 270);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filter Criterias";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // filterButton
+            // 
+            this.filterButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.filterButton.Location = new System.Drawing.Point(834, 52);
+            this.filterButton.Name = "filterButton";
+            this.filterButton.Size = new System.Drawing.Size(227, 68);
+            this.filterButton.TabIndex = 7;
+            this.filterButton.TabStop = false;
+            this.filterButton.Text = "Filter";
+            this.filterButton.UseVisualStyleBackColor = true;
+            this.filterButton.Click += new System.EventHandler(this.button1_Click_2);
+            // 
+            // andOrDropDow
+            // 
+            this.andOrDropDow.AutoCompleteCustomSource.AddRange(new string[] {
+            "AND",
+            "OR"});
+            this.andOrDropDow.FormattingEnabled = true;
+            this.andOrDropDow.Items.AddRange(new object[] {
+            "",
+            "AND",
+            "OR"});
+            this.andOrDropDow.Location = new System.Drawing.Point(367, 22);
+            this.andOrDropDow.Name = "andOrDropDow";
+            this.andOrDropDow.Size = new System.Drawing.Size(59, 24);
+            this.andOrDropDow.TabIndex = 6;
+            this.andOrDropDow.Text = "AND/OR";
             // 
             // MainForm
             // 
@@ -165,6 +198,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1073, 674);
+            this.Controls.Add(this.filterButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.menuStrip1);
@@ -194,6 +228,8 @@
         private System.Windows.Forms.TextBox filterTextBox;
         private System.Windows.Forms.Button addNewFilterButton;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button filterButton;
+        private System.Windows.Forms.ComboBox andOrDropDow;
     }
 }
 
