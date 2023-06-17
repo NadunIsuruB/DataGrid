@@ -11,18 +11,26 @@ namespace DataGrid.Models
         public string Column { get; protected set; }
         public string Operator { get; protected set; }
         public string FilterValue { get; protected set; }
-        public string LogicalOperator { get; protected set; } = string.Empty;
-        public Filter(string _column, string _operator, string _filteredValue, string _fogicalOperator) 
+        public int LogicalOperator { get; protected set; } = 0;
+        public Filter(string _column, string _operator, string _filteredValue, int _logicalOperator) 
         { 
             Column = _column;
             Operator = _operator;
             FilterValue = _filteredValue;
-            LogicalOperator = _fogicalOperator;
+            LogicalOperator = _logicalOperator;
         }
 
         public string FilterString()
         {
-            return LogicalOperator +" "+ $"[{Column}]" + Operator + FilterValue;
+            string filterSring = "";
+            switch(LogicalOperator)
+            {
+                case -1: filterSring = "" + " " + $"[{Column}]" + Operator + FilterValue; break;
+                case 0 : filterSring = "" + " " + $"[{Column}]" + Operator + FilterValue; break;
+                case 1 : filterSring = " AND" + " " + $"[{Column}]" + Operator + FilterValue; break;
+                case 2: filterSring = " OR" + " " + $"[{Column}]" + Operator + FilterValue; break;
+            }
+            return filterSring;
         }
     }
 }

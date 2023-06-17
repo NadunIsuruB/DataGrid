@@ -40,6 +40,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.filterButton = new System.Windows.Forms.Button();
             this.andOrDropDow = new System.Windows.Forms.ComboBox();
+            this.filterEditor = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -86,20 +87,20 @@
             this.importToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(56, 32);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // importToolStripMenuItem
             // 
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(224, 32);
             this.importToolStripMenuItem.Text = "Import";
             this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 32);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -115,6 +116,7 @@
             // 
             // operatorsDropDown
             // 
+            this.operatorsDropDown.Enabled = false;
             this.operatorsDropDown.FormattingEnabled = true;
             this.operatorsDropDown.Items.AddRange(new object[] {
             "Operators",
@@ -129,17 +131,20 @@
             this.operatorsDropDown.Size = new System.Drawing.Size(122, 24);
             this.operatorsDropDown.TabIndex = 3;
             this.operatorsDropDown.Text = "Operators";
+            this.operatorsDropDown.SelectedIndexChanged += new System.EventHandler(this.operatorsDropDown_SelectedIndexChanged);
             // 
             // filterTextBox
             // 
+            this.filterTextBox.Enabled = false;
             this.filterTextBox.Location = new System.Drawing.Point(261, 22);
             this.filterTextBox.Name = "filterTextBox";
             this.filterTextBox.Size = new System.Drawing.Size(100, 22);
             this.filterTextBox.TabIndex = 4;
+            this.filterTextBox.TextChanged += new System.EventHandler(this.filterTextBox_TextChanged);
             // 
             // addNewFilterButton
             // 
-            this.addNewFilterButton.Location = new System.Drawing.Point(441, 21);
+            this.addNewFilterButton.Location = new System.Drawing.Point(497, 22);
             this.addNewFilterButton.Name = "addNewFilterButton";
             this.addNewFilterButton.Size = new System.Drawing.Size(126, 24);
             this.addNewFilterButton.TabIndex = 5;
@@ -151,6 +156,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.filterEditor);
             this.groupBox1.Controls.Add(this.andOrDropDow);
             this.groupBox1.Controls.Add(this.criteriaDropDown);
             this.groupBox1.Controls.Add(this.addNewFilterButton);
@@ -158,7 +164,7 @@
             this.groupBox1.Controls.Add(this.filterTextBox);
             this.groupBox1.Location = new System.Drawing.Point(12, 39);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(573, 270);
+            this.groupBox1.Size = new System.Drawing.Size(631, 270);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filter Criterias";
@@ -181,6 +187,7 @@
             this.andOrDropDow.AutoCompleteCustomSource.AddRange(new string[] {
             "AND",
             "OR"});
+            this.andOrDropDow.Enabled = false;
             this.andOrDropDow.FormattingEnabled = true;
             this.andOrDropDow.Items.AddRange(new object[] {
             "",
@@ -188,9 +195,17 @@
             "OR"});
             this.andOrDropDow.Location = new System.Drawing.Point(367, 22);
             this.andOrDropDow.Name = "andOrDropDow";
-            this.andOrDropDow.Size = new System.Drawing.Size(59, 24);
+            this.andOrDropDow.Size = new System.Drawing.Size(101, 24);
             this.andOrDropDow.TabIndex = 6;
             this.andOrDropDow.Text = "AND/OR";
+            // 
+            // filterEditor
+            // 
+            this.filterEditor.Location = new System.Drawing.Point(6, 51);
+            this.filterEditor.Name = "filterEditor";
+            this.filterEditor.Size = new System.Drawing.Size(617, 213);
+            this.filterEditor.TabIndex = 7;
+            this.filterEditor.Text = "";
             // 
             // MainForm
             // 
@@ -230,6 +245,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button filterButton;
         private System.Windows.Forms.ComboBox andOrDropDow;
+        private System.Windows.Forms.RichTextBox filterEditor;
     }
 }
 

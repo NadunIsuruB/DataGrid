@@ -17,15 +17,13 @@ namespace DataGrid.Models
 
         }
 
-        public BindingSource ApplyFilters(DataGridView dataGridView)
+        public BindingSource ApplyFilters(DataGridView dataGridView, string filterString)
         {
             BindingSource bs = new BindingSource();
 
             bs.DataSource = dataGridView.DataSource;
 
-            Filters.ForEach(f => {
-                bs.Filter += f.FilterString();
-            });
+            bs.Filter = filterString;
 
             return bs;
         }
