@@ -19,51 +19,59 @@ namespace DataGrid.Services
 
         public DataTable ReadFile()
         {
-            OpenFileDialog opf = new OpenFileDialog();
-            opf.Filter = "csv File|*.csv";
-            var dataTable = new DataTable();
-
-            if (opf.ShowDialog() != DialogResult.OK) return null;
-
-            string[] lines = System.IO.File.ReadAllLines(opf.FileName);
-            FilePath = opf.FileName;
-            string[][] data = new string[lines.Length][];
-            for (int i = 0; i < lines.Length; i++)
+            try
             {
-                data[i] = lines[i].Split(',');
-                if (i == 0)
+                OpenFileDialog opf = new OpenFileDialog();
+                opf.Filter = "csv File|*.csv";
+                var dataTable = new DataTable();
+
+                if (opf.ShowDialog() != DialogResult.OK) return null;
+
+                string[] lines = System.IO.File.ReadAllLines(opf.FileName);
+                FilePath = opf.FileName;
+                string[][] data = new string[lines.Length][];
+                for (int i = 0; i < lines.Length; i++)
                 {
-                    foreach (string col in data[i])
+                    data[i] = lines[i].Split(',');
+                    if (i == 0)
                     {
-                        bool isInteger = true;
-                        foreach (string value in File.ReadLines(FilePath).Skip(1).Take(6))
+                        foreach (string col in data[i])
                         {
-                            if (!int.TryParse(value.Split(',')[data[i].ToList().IndexOf(col)], out _))
+                            bool isInteger = true;
+                            foreach (string value in File.ReadLines(FilePath).Skip(1).Take(6))
                             {
-                                isInteger = false;
-                                break;
+                                if (!int.TryParse(value.Split(',')[data[i].ToList().IndexOf(col)], out _))
+                                {
+                                    isInteger = false;
+                                    break;
+                                }
                             }
+                            if (isInteger)
+                            {
+                                dataTable.Columns.Add(col, typeof(int));
+                            }
+                            else
+                            {
+                                dataTable.Columns.Add(col, typeof(string));
+                            }
+
                         }
-                        if (isInteger)
-                        {
-                            dataTable.Columns.Add(col, typeof(int));
-                        }
-                        else
-                        {
-                            dataTable.Columns.Add(col, typeof(string));
-                        }
-                        
+                    }
+                    else
+                    {
+                        dataTable.NewRow();
+                        dataTable.Rows.Add(data[i]);
                     }
                 }
-                else
-                {
-                    dataTable.NewRow();
-                    dataTable.Rows.Add(data[i]);
-                }
+                this.DataTable = dataTable;
+                return dataTable;
             }
-            this.DataTable = dataTable;
-            return dataTable;
-
+            catch(Exception ex)
+            {
+                Console.Error.WriteLine(ex.ToString());
+                return null;
+            }
+            
         }
     }
 }

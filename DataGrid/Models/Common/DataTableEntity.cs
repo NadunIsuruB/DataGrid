@@ -20,14 +20,23 @@ namespace DataGrid.Models.Common
             inputFileReaderService = _inputFileReaderService;
         }
 
-        public void ImportFile() { 
-            dataTable = inputFileReaderService.ReadFile();
-            var _headers = new List<DataColumn>();
-            for (int i = 0; i<dataTable.Columns.Count; i++)
+        public void ImportFile() {
+            try
             {
-                _headers.Add(dataTable.Columns[i]);
+                dataTable = inputFileReaderService.ReadFile();
+                var _headers = new List<DataColumn>();
+                if (dataTable == null) throw new Exception("Data Table Not Found!");
+                for (int i = 0; i < dataTable.Columns.Count; i++)
+                {
+                    _headers.Add(dataTable.Columns[i]);
+                }
+                headers = _headers;
             }
-            headers = _headers;
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
     }
 }

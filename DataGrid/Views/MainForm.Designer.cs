@@ -107,7 +107,7 @@
             // criteriaDropDown
             // 
             this.criteriaDropDown.FormattingEnabled = true;
-            this.criteriaDropDown.Location = new System.Drawing.Point(6, 21);
+            this.criteriaDropDown.Location = new System.Drawing.Point(113, 21);
             this.criteriaDropDown.Name = "criteriaDropDown";
             this.criteriaDropDown.Size = new System.Drawing.Size(121, 24);
             this.criteriaDropDown.TabIndex = 2;
@@ -126,7 +126,7 @@
             "<",
             "<=",
             "!="});
-            this.operatorsDropDown.Location = new System.Drawing.Point(133, 21);
+            this.operatorsDropDown.Location = new System.Drawing.Point(240, 21);
             this.operatorsDropDown.Name = "operatorsDropDown";
             this.operatorsDropDown.Size = new System.Drawing.Size(122, 24);
             this.operatorsDropDown.TabIndex = 3;
@@ -136,7 +136,7 @@
             // filterTextBox
             // 
             this.filterTextBox.Enabled = false;
-            this.filterTextBox.Location = new System.Drawing.Point(261, 22);
+            this.filterTextBox.Location = new System.Drawing.Point(368, 22);
             this.filterTextBox.Name = "filterTextBox";
             this.filterTextBox.Size = new System.Drawing.Size(100, 22);
             this.filterTextBox.TabIndex = 4;
@@ -190,10 +190,9 @@
             this.andOrDropDow.Enabled = false;
             this.andOrDropDow.FormattingEnabled = true;
             this.andOrDropDow.Items.AddRange(new object[] {
-            "",
             "AND",
             "OR"});
-            this.andOrDropDow.Location = new System.Drawing.Point(367, 22);
+            this.andOrDropDow.Location = new System.Drawing.Point(6, 21);
             this.andOrDropDow.Name = "andOrDropDow";
             this.andOrDropDow.Size = new System.Drawing.Size(101, 24);
             this.andOrDropDow.TabIndex = 6;

@@ -40,6 +40,7 @@ namespace DataGrid
             dataGridView.ReadOnly = true;
 
             List<string> headers = new List<string>() {"Criteria"};
+            if (filteredDataTable.headers == null) return;
             filteredDataTable.headers.ForEach(col =>
             {
                 if (col.DataType == typeof(string)) return;
@@ -63,6 +64,11 @@ namespace DataGrid
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            if (criteriaDropDown.SelectedIndex == 0) { MessageBox.Show("Criteria Must be Selected!"); return; }
+            if (operatorsDropDown.SelectedIndex == 0) { MessageBox.Show("Operator Must be Selected"); return; }
+            if (filterTextBox.Text == "") { MessageBox.Show("Value Must be Added"); return; }
+            if (andOrDropDow.SelectedIndex == -1 && filteredDataTable.Filters.Count>0) { MessageBox.Show("Logical Operator Must be Selected"); return; }
+
             Filter filter = new Filter(criteriaDropDown.Text, operatorsDropDown.Text, filterTextBox.Text, andOrDropDow.SelectedIndex);
             filteredDataTable.Filters.Add(filter);
             filterEditor.Text += filter.FilterString();

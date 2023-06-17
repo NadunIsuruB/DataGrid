@@ -26,9 +26,8 @@ namespace DataGrid.Models
             switch(LogicalOperator)
             {
                 case -1: filterSring = "" + " " + $"[{Column}]" + Operator + FilterValue; break;
-                case 0 : filterSring = "" + " " + $"[{Column}]" + Operator + FilterValue; break;
-                case 1 : filterSring = " AND" + " " + $"[{Column}]" + Operator + FilterValue; break;
-                case 2: filterSring = " OR" + " " + $"[{Column}]" + Operator + FilterValue; break;
+                case 0 : filterSring = " AND" + " " + $"[{Column}]" + Operator + FilterValue; break;
+                case 1 : filterSring = " OR" + " " + $"[{Column}]" + Operator + FilterValue; break;
             }
             return filterSring;
         }
