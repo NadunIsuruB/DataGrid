@@ -97,7 +97,7 @@ namespace DataGrid
         {
             filterEditor.Text = "";
             filteredDataTable.FilterString = "";
-            operatorsDropDown.Text = "ADD/OR";
+            andOrDropDow.Text = "ADD/OR";
             dataGridView.DataSource = filteredDataTable.ApplyFilters(dataGridView, "");
         }
 
