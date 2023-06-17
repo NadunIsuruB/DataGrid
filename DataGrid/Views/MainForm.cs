@@ -71,7 +71,7 @@ namespace DataGrid
             if (criteriaDropDown.SelectedIndex == 0) { MessageBox.Show("Criteria Must be Selected!"); return; }
             if (operatorsDropDown.SelectedIndex == 0) { MessageBox.Show("Operator Must be Selected"); return; }
             if (filterTextBox.Text == "") { MessageBox.Show("Value Must be Added"); return; }
-            if (andOrDropDow.SelectedIndex == -1 && (filteredDataTable.FilterString != "" || filterEditor.Text != "")) { MessageBox.Show("Logical Operator Must be Selected"); return; }
+            if (andOrDropDow.SelectedIndex <= 0 && (filteredDataTable.FilterString != "" || filterEditor.Text != "")) { MessageBox.Show("Logical Operator Must be Selected"); return; }
 
             //Filter filter = new Filter(criteriaDropDown.Text, operatorsDropDown.Text, filterTextBox.Text, andOrDropDow.SelectedIndex);
             filterService.Column = criteriaDropDown.Text;
