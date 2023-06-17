@@ -201,6 +201,7 @@
             this.andOrDropDow.Enabled = false;
             this.andOrDropDow.FormattingEnabled = true;
             this.andOrDropDow.Items.AddRange(new object[] {
+            "ADD/OR",
             "AND",
             "OR"});
             this.andOrDropDow.Location = new System.Drawing.Point(12, 119);

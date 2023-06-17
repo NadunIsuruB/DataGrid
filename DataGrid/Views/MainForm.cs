@@ -99,6 +99,7 @@ namespace DataGrid
             filteredDataTable.FilterString = "";
             searchTextBox.Text = "";
             andOrDropDow.Text = "ADD/OR";
+
             dataGridView.DataSource = filteredDataTable.ApplyFilters("");
             dataGridView.DataSource = filteredDataTable.ApplySearch("");
         }
