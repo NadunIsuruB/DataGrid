@@ -9,10 +9,12 @@ namespace DataGrid
     public partial class MainForm : Form
     {
         IInputFileReaderService fileReaderService;
+        IFilterService filterService;
         FilteredDataTable filteredDataTable;
-        public MainForm(IInputFileReaderService _fileReaderService)
+        public MainForm(IInputFileReaderService _fileReaderService, IFilterService _filterService)
         {
             fileReaderService = _fileReaderService;  
+            filterService = _filterService;
             filteredDataTable = new FilteredDataTable(fileReaderService);
             InitializeComponent();
         }
@@ -52,12 +54,17 @@ namespace DataGrid
             if (criteriaDropDown.SelectedIndex == 0) { MessageBox.Show("Criteria Must be Selected!"); return; }
             if (operatorsDropDown.SelectedIndex == 0) { MessageBox.Show("Operator Must be Selected"); return; }
             if (filterTextBox.Text == "") { MessageBox.Show("Value Must be Added"); return; }
-            if (andOrDropDow.SelectedIndex == -1 && filteredDataTable.Filters.Count>0) { MessageBox.Show("Logical Operator Must be Selected"); return; }
+            if (andOrDropDow.SelectedIndex == -1 && (filteredDataTable.FilterString != null || filterEditor.Text != "")) { MessageBox.Show("Logical Operator Must be Selected"); return; }
 
-            Filter filter = new Filter(criteriaDropDown.Text, operatorsDropDown.Text, filterTextBox.Text, andOrDropDow.SelectedIndex);
-            filteredDataTable.Filters.Add(filter);
-            filterEditor.Text += filter.FilterString();
-            if (filteredDataTable.Filters.Count == 0) return;
+            //Filter filter = new Filter(criteriaDropDown.Text, operatorsDropDown.Text, filterTextBox.Text, andOrDropDow.SelectedIndex);
+            filterService.Column = criteriaDropDown.Text;
+            filterService.Operator = operatorsDropDown.Text;
+            filterService.FilterValue = filterTextBox.Text;
+            filterService.LogicalOperator = andOrDropDow.SelectedIndex;
+
+            filterEditor.Text += filterService.FilterString();
+            filteredDataTable.FilterString = filterEditor.Text;
+            if (filteredDataTable.FilterString == null) return;
             andOrDropDow.Enabled = true;
 
         }
@@ -75,15 +82,28 @@ namespace DataGrid
 
         private void filterTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (filterTextBox.Text == "" || filteredDataTable.Filters.Count==0) return;
+            if (filterTextBox.Text == "" || filteredDataTable.FilterString == null) return;
             andOrDropDow.Enabled = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             filterEditor.Text = "";
-            filteredDataTable.Filters.Clear();
+            filteredDataTable.FilterString = null;
             dataGridView.DataSource = filteredDataTable.ApplyFilters(dataGridView, filterEditor.Text);
+        }
+
+        private void filterEditor_TextChanged(object sender, EventArgs e)
+        {
+            if (filterEditor.Text == "")
+            {
+                filteredDataTable.FilterString = null;
+                andOrDropDow.Enabled = false;
+            }
+            else
+            {
+                andOrDropDow.Enabled = true;
+            }  
         }
     }
 }

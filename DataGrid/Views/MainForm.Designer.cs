@@ -175,6 +175,7 @@
             this.filterEditor.Size = new System.Drawing.Size(617, 213);
             this.filterEditor.TabIndex = 7;
             this.filterEditor.Text = "";
+            this.filterEditor.TextChanged += new System.EventHandler(this.filterEditor_TextChanged);
             // 
             // andOrDropDow
             // 

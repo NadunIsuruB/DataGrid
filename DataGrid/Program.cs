@@ -18,10 +18,11 @@ namespace DataGrid
         static void Main()
         {
             IInputFileReaderService CSVRederService = new CSVReaderService();
+            IFilterService filterService = new FilterService();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm(CSVRederService));
+            Application.Run(new MainForm(CSVRederService, filterService));
         }
     }
 }
