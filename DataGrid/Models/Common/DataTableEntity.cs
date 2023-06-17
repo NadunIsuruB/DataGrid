@@ -11,8 +11,8 @@ namespace DataGrid.Models.Common
 {
     public abstract class DataTableEntity
     {
-        public List<DataColumn> headers { get; protected set; }
-        public DataTable dataTable { get; protected set; }
+        public List<DataColumn> Headers { get; protected set; }
+        public DataTable DataTable { get; protected set; }
 
         private IInputFileReaderService inputFileReaderService;
 
@@ -23,14 +23,14 @@ namespace DataGrid.Models.Common
         public void ImportFile() {
             try
             {
-                dataTable = inputFileReaderService.ReadFile();
+                DataTable = inputFileReaderService.ReadFile();
                 var _headers = new List<DataColumn>();
-                if (dataTable == null) throw new Exception("Data Table Not Found!");
-                for (int i = 0; i < dataTable.Columns.Count; i++)
+                if (DataTable == null) throw new Exception("Data Table Not Found!");
+                for (int i = 0; i < DataTable.Columns.Count; i++)
                 {
-                    _headers.Add(dataTable.Columns[i]);
+                    _headers.Add(DataTable.Columns[i]);
                 }
-                headers = _headers;
+                Headers = _headers;
             }
             catch(Exception ex)
             {
